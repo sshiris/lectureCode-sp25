@@ -1,6 +1,8 @@
 package lec10_inheritance3;
 
-public class ArraySet2<T> {
+import java.util.Iterator;
+
+public class ArraySet2<T> implements Iterable<T> {
     private T[] items;
     private int size;
 
@@ -22,6 +24,44 @@ public class ArraySet2<T> {
         if(!contains(x)){
             items[size] = x;
             size += 1;
+        }
+    }
+    public Iterator<T> iterator(){
+        return new ArraySetIterator();
+    }
+    private class ArraySetIterator implements Iterator<T>{
+        private int wizPos;
+        public ArraySetIterator(){
+            wizPos = 0;
+        }
+        @Override
+        public boolean hasNext() {
+            return wizPos < size;
+        }
+
+        @Override
+        public T next() {
+            T returnItem = items[wizPos];
+            wizPos +=1;
+            return returnItem;
+        }
+    }
+
+    public static void main(String[] args){
+        ArraySet2<Integer> aset = new ArraySet2<>();
+        aset.add(5);
+        aset.add(23);
+        aset.add(42);
+
+        Iterator<Integer> aseer = aset.iterator();
+
+//        while (aseer.hasNext()){
+//            int i = aseer.next();
+//            System.out.println(i);
+//        }
+
+        for (int i : aset){
+            System.out.println(i);
         }
     }
 }
