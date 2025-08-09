@@ -46,6 +46,17 @@ public class ArraySet2<T> implements Iterable<T> {
             return returnItem;
         }
     }
+    @Override
+    public String toString(){
+        StringBuilder returnString = new StringBuilder("{");
+        for (int i = 0; i < size -1; i++){
+            returnString.append(items[i]);
+            returnString.append(", ");
+        }
+        returnString.append(items[size - 1]);
+        returnString.append("}");
+        return returnString.toString();
+    }
 
     public static void main(String[] args){
         ArraySet2<Integer> aset = new ArraySet2<>();
@@ -63,5 +74,6 @@ public class ArraySet2<T> implements Iterable<T> {
         for (int i : aset){
             System.out.println(i);
         }
+        System.out.println(aset);
     }
 }
