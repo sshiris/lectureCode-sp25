@@ -58,14 +58,36 @@ public class ArraySet2<T> implements Iterable<T> {
         return returnString.toString();
     }
 
+    @Override
+    public boolean equals(Object o){
+        if(this == o){return true;}
+
+        if (o instanceof ArraySet2 oas){
+            if(this.size != oas.size){
+                return false;
+            }
+            for (T x : this){
+                if(!oas.contains(x)){
+                    return false;
+                }
+            }
+            return true;
+        }
+        return false;
+    }
+
     public static void main(String[] args){
         ArraySet2<Integer> aset = new ArraySet2<>();
         aset.add(5);
         aset.add(23);
         aset.add(42);
 
-        Iterator<Integer> aseer = aset.iterator();
+        ArraySet2<Integer> aset2 = new ArraySet2<>();
+        aset2.add(5);
+        aset2.add(23);
+        aset2.add(42);
 
+//        Iterator<Integer> aseer = aset.iterator();
 //        while (aseer.hasNext()){
 //            int i = aseer.next();
 //            System.out.println(i);
@@ -75,5 +97,7 @@ public class ArraySet2<T> implements Iterable<T> {
             System.out.println(i);
         }
         System.out.println(aset);
+
+        System.out.println(aset.equals(aset2));
     }
 }
